@@ -144,7 +144,9 @@ public class SignInFragment extends Fragment {
                     editor.putString("photo",user.getString("photo"));
                     editor.apply();
                     //if success
-                    Toast.makeText(getContext(),"Login  success",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"Login success",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(),"Login failed",Toast.LENGTH_SHORT).show();
                 }
             }catch (JSONException e){
                 e.printStackTrace();

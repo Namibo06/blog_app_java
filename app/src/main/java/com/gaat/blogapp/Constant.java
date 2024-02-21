@@ -1,5 +1,6 @@
 package com.gaat.blogapp;
 
+//Constantes como o próprio nome da class diz,está armazenando todas os endpoint's da API Laravel
 public class Constant {
     public static final String URL = "http://192.168.1.4:80/";
     public static final String HOME = URL+"api";

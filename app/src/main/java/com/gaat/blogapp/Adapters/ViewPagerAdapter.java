@@ -17,6 +17,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater inflater;
 
+    //Construtor,dá para observar que somente carrega a visibilidade e o nome da Class
     public ViewPagerAdapter(Context context) {
         this.context = context;
     }
@@ -39,6 +40,7 @@ public class ViewPagerAdapter extends PagerAdapter {
             "Lorem impsolum 3"
     };
 
+    //Aqui retorna a quantidade de titulos
     @Override
     public int getCount(){
         return titles.length;
@@ -52,23 +54,26 @@ public class ViewPagerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position){
-        inflater  =(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View v=inflater.inflate(R.layout.view_pager,container,false);
+        inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(R.layout.view_pager,container,false);
 
         //init views
         ImageView imageView=v.findViewById(R.id.imgViewPager);
         TextView txtTitle=v.findViewById(R.id.txtTileViewPager);
         TextView txtDesc=v.findViewById(R.id.txtDescViewPager);
 
+        //setando conforme a posição
         imageView.setImageResource(images[position]);
         txtTitle.setText(titles[position]);
         txtDesc.setText(descs[position]);
 
+        //adicionarndo view e a retornando
         container.addView(v);
         return v;
     }
 
     public void destroyItem(@NonNull ViewGroup container,int position,Object object){
+        //utilizado para remover a view
         container.removeView((LinearLayout)object);
     }
 }
