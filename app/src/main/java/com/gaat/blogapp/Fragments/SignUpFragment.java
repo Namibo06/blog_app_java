@@ -4,6 +4,7 @@ import static com.gaat.blogapp.Constant.LOGIN;
 import static com.gaat.blogapp.Constant.REGISTER;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -23,7 +24,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.gaat.blogapp.AuthActivity;
+import com.gaat.blogapp.HomeActivity;
 import com.gaat.blogapp.R;
+import com.gaat.blogapp.UserInfoActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -155,6 +159,7 @@ public class SignUpFragment extends Fragment {
         if(!txtConfirmPassword.getText().toString().equals(txtPassword.getText().toString())){
             layoutConfirmPassword.setErrorEnabled(true);
             layoutConfirmPassword.setError("Password does not match");
+            dialog.dismiss();
             return false;
         }
         return true;
@@ -179,8 +184,11 @@ public class SignUpFragment extends Fragment {
                     editor.putString("name",user.getString("name"));
                     editor.putString("lastName",user.getString("lastName"));
                     editor.putString("photo",user.getString("photo"));
+                    editor.putBoolean("isLoggedIn",true);
                     editor.apply();
                     //if success,show short message
+                    startActivity(new Intent(((AuthActivity)getContext()), UserInfoActivity.class));
+                    ((AuthActivity)getContext()).finish();
                     Toast.makeText(getContext(),"Register success",Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getContext(),"Register failed",Toast.LENGTH_SHORT).show();

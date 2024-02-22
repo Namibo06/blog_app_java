@@ -5,6 +5,7 @@ package com.gaat.blogapp.Fragments;
 import static com.gaat.blogapp.Constant.LOGIN;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -24,6 +25,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.gaat.blogapp.AuthActivity;
+import com.gaat.blogapp.HomeActivity;
 import com.gaat.blogapp.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -142,8 +145,11 @@ public class SignInFragment extends Fragment {
                     editor.putString("name",user.getString("name"));
                     editor.putString("lastName",user.getString("lastName"));
                     editor.putString("photo",user.getString("photo"));
+                    editor.putBoolean("isLoggedIn",true);
                     editor.apply();
                     //if success
+                    startActivity(new Intent(((AuthActivity)getContext()),HomeActivity.class));
+                    ((AuthActivity)getContext()).finish();
                     Toast.makeText(getContext(),"Login success",Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getContext(),"Login failed",Toast.LENGTH_SHORT).show();
